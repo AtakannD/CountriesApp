@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/cream">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.atakandalkiran.androidcountriesapp.ui.search.SearchViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.search.SearchFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:title="@string/search"
+                app:titleTextAppearance="?textAppearanceSubtitle1" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchField"
+            style="?textInputStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search"
+            app:boxBackgroundColor="@color/classic_cream"
+            app:endIconDrawable="@drawable/baseline_clear_24"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbarLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionSearch"
+                android:inputType="textNoSuggestions|textCapSentences"
+                android:singleLine="true"
+                android:textAppearance="?textAppearanceSubtitle1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchField" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchHistoryRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:transitionGroup="true"
+            android:visibility="@{viewModel.searchStatus != true ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchField"
+            tools:listitem="@layout/search_history_item_layout" />
+
+        <ProgressBar
+            android:id="@+id/searchLoadingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:indeterminateTint="#FF99CC00"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/searchSuccessGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:constraint_referenced_ids="searchHistoryRecyclerView, searchField"
+            tools:ignore="NotSibling" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

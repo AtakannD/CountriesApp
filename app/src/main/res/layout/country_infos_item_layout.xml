@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="country"
+            type="com.atakandalkiran.androidcountriesapp.data.model.CountryInfos" />
+        <variable
+            name="clickListener"
+            type="com.atakandalkiran.androidcountriesapp.ui.common.CountriesOnClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="@color/classic_cream"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="16dp"
+        app:cardUseCompatPadding="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/itemConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{(rootView) -> clickListener.onItemClick(rootView, country)}">
+
+            <ImageView
+                android:id="@+id/countryFlag"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/countryFlag"
+                app:imageUrl="@{country}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="true"
+                android:text="@{country.name.common}"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/officalName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/countryFlag"
+                app:layout_constraintTop_toTopOf="@+id/countryFlag"
+                tools:text="Placeholder" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/officalName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="true"
+                android:text="@{country.name.official}"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/countryFlag"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                tools:text="@string/officialNames" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/populationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="6dp"
+                android:text="@string/populationText"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/countryFlag"
+                app:layout_constraintStart_toEndOf="@+id/countryFlag" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/population"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{country.countryPopulation}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/populationText"
+                app:layout_constraintStart_toEndOf="@+id/populationText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cca2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@{country.cca2}"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/population"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="@string/cca2" />
+
+            <ImageButton
+                android:id="@+id/savedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:contentDescription="@+id/savedButton"
+                android:text="@string/save_country"
+                android:background="@color/classic_cream"
+                android:visibility="@{country.favorite != true ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/cca2"
+                app:layout_constraintEnd_toEndOf="@id/cca2"
+                app:srcCompat="@drawable/round_download_for_offline_18" />
+
+            <ImageButton
+                android:id="@+id/clearButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:contentDescription="@+id/savedButton"
+                android:text="@string/clear_country_from_saved_fragment"
+                android:background="@color/classic_cream"
+                android:visibility="@{country.favorite != true ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@+id/cca2"
+                app:layout_constraintEnd_toEndOf="@id/cca2"
+                app:srcCompat="@drawable/round_clear_18" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

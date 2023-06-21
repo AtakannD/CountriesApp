@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/saved_navigation_graph"
+    app:startDestination="@id/savedFragment">
+
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.atakandalkiran.androidcountriesapp.ui.saved.SavedFragment"
+        android:label="Saved Countries">
+        <action
+            android:id="@+id/action_savedFragment_to_detailFragment3"
+            app:destination="@id/detailFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment3"
+        android:name="com.atakandalkiran.androidcountriesapp.ui.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="countryInfos"
+            app:argType="com.atakandalkiran.androidcountriesapp.data.model.CountryInfos" />
+    </fragment>
+
+</navigation>

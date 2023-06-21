@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/cream"
+    tools:context=".ui.home.HomeFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.atakandalkiran.androidcountriesapp.ui.home.HomeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:title="@string/home"
+                app:titleTextAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/containerChip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/classic_cream"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbarLayout">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/containerChipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipSpacingHorizontal="8dp"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAll"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chip_all"
+                    app:chipBackgroundColor="@color/cream" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAfrica"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chipAfrica"
+                    app:chipBackgroundColor="@color/cream" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAntarctica"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chipAntarctica"
+                    app:chipBackgroundColor="@color/cream" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAsia"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chipAsia"
+                    app:chipBackgroundColor="@color/cream" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipEurope"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chipEurope"
+                    app:chipBackgroundColor="@color/cream" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNorthAmerica"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chipNAmerica"
+                    app:chipBackgroundColor="@color/cream" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSouthAmerica"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chipSAmerica"
+                    app:chipBackgroundColor="@color/cream" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipOceania"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chipOceania"
+                    app:chipBackgroundColor="@color/cream" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/containerChip" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:listData="@{viewModel.countryProperties}"
+            app:spanCount="2"
+            tools:listitem="@layout/country_infos_item_layout" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/connectionErrorImage"
+            android:layout_width="@dimen/connection_error_image_size"
+            android:layout_height="@dimen/connection_error_image_size"
+            android:layout_marginHorizontal="@dimen/sixteen_dp"
+            android:layout_marginTop="@dimen/warning_image_top_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_signal_wifi_bad_40" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/connectionWarningHeader"
+            style="?textAppearanceHeadline3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/regular_margin"
+            android:text="@string/connection_error"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/connectionErrorImage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/connectionWarningDescription"
+            style="?textAppearanceBodyMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/regular_margin"
+            android:text="@string/connection_error_description"
+            app:layout_constraintEnd_toEndOf="@id/connectionWarningHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/connectionWarningHeader"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonReconnect"
+            style="?buttonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/largeButton"
+            android:layout_margin="@dimen/regular_margin"
+            android:onClick="@{()-> viewModel.retryConnect()}"
+            android:text="@string/retry_to_connect"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/connectionWarningDescription"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/connectionErrorGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:constraint_referenced_ids="buttonReconnect, connectionWarningDescription, connectionWarningHeader, connectionErrorImage" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/connectionSuccessGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:constraint_referenced_ids="recyclerView, containerChip" />
+
+        <ProgressBar
+            android:id="@+id/loadingStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="#FF99CC00"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/connectionLoadingGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:constraint_referenced_ids="loadingStatus"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

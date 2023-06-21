@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="country"
+            type="com.atakandalkiran.androidcountriesapp.data.model.SearchHistoryModel" />
+        <variable
+            name="clickListener"
+            type="com.atakandalkiran.androidcountriesapp.ui.search.SearchHistoryItemClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(country)}"
+        android:background="@color/cream">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView"
+            style="?textInputOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/regular_margin"
+            android:layout_marginTop="@dimen/eight_dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{country.searchedKeyword}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Umbrella Academy" />
+
+        <ImageButton
+            android:id="@+id/searchHistoryClearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/cream"
+            android:contentDescription="@+id/searchHistoryClearButton"
+            android:text="@string/clear_from_search_history"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView"
+            app:srcCompat="@drawable/search_history_clean" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/materialTextView"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

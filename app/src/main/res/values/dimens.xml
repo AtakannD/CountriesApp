@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="connection_error_image_size">80dp</dimen>
+    <dimen name="sixteen_dp">16dp</dimen>
+    <dimen name="warning_image_top_margin">100dp</dimen>
+    <dimen name="regular_margin">16dp</dimen>
+    <dimen name="largeButton">64dp</dimen>
+    <dimen name="cardview_vertical_margin">90dp</dimen>
+    <dimen name="cardview_detail_margin">50dp</dimen>
+    <dimen name="cardview_detail_elevation">20dp</dimen>
+    <dimen name="detail_image_size">100dp</dimen>
+    <dimen name="save_button_margin">2dp</dimen>
+    <dimen name="regular_layout_margin">8dp</dimen>
+    <dimen name="eight_dp">8dp</dimen>
+    <dimen name="detail_items_margin">8dp</dimen>
+    <dimen name="search_history_item_margin">4dp</dimen>
+</resources>
