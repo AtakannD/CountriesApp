@@ -6,8 +6,10 @@ This project is an application that displays country information on Android plat
 
 Splash Screen:
 ![Splash Screenshot](screenshots/SplashScreen.jpg)
+
 Home Screen:
 ![Home Screenshot](screenshots/HomeScreen.jpg)
+
 Detail Screen:
 ![Detail Screenshot](screenshots/DetailScreen.jpg)
 
