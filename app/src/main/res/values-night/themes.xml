@@ -10,7 +10,8 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@android:color/holo_green_light</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@android:color/holo_green_dark</item>
+        <item name="android:statusBarColor">@color/holo_green</item>
+        <item name="colorSurface">@color/holo_green</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
