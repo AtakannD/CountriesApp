@@ -22,10 +22,8 @@ class CountriesRemoteDataSource @Inject constructor(
     private suspend fun <T> getResult(
         serviceCall: suspend () -> Response<T>
     ): Result<T> {
-
         try {
             val response = serviceCall()
-
             if (response.isSuccessful) {
                 response.body().takeIf { it != null }?.let { responseBody ->
                     return Result.Success(responseBody)

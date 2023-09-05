@@ -29,22 +29,38 @@ data class CountryInfos(
     @ColumnInfo("country_region") val region: String?,
     @ColumnInfo("country_subregion") val subregion: String?,
     @ColumnInfo("country_timezones") val timezones: List<String>,
-    @ColumnInfo("country_domain_extensions") val tld: List<String>,
+    @ColumnInfo("country_domain_extensions") val tld: List<String?>,
     @ColumnInfo("country_is_unMember") val unMember: Boolean,
     @ColumnInfo("is_favorite") var isFavorite: Boolean = false
 ) : Parcelable {
     val flagPng: String
         get() = this.flags.png.orEmpty()
+    val countryArea: String
+        get() {
+            return if (this.area < 0) {
+                "There is no information about area."
+            } else {
+                this.area.toString()
+            }
+        }
+    val countryDemonyms: String
+        get() = this.demonyms?.eng?.f ?: "There is no demonym word to describe."
     val countryPopulation: String
         get() = this.population.toString()
-    val countryArea: String
-        get() = this.area.toString()
+
+    val countryRegion: String
+        get() = this.region ?: "There is no region."
+    val countrySubregion: String
+        get() = this.subregion ?: "There is no subregion."
     val isIndependent: String
         get() = this.independent.toString().replaceFirstChar(Char::uppercase)
-    val isUnMember: String
-        get() = this.unMember.toString().replaceFirstChar(Char::uppercase)
     val isLandlocked: String
         get() = this.landlocked.toString().replaceFirstChar(Char::uppercase)
+    val isUnMember: String
+        get() = this.unMember.toString().replaceFirstChar(Char::uppercase)
+    val telefonDomain: String
+        get() = this.idd?.root ?: "There is no calling code."
+
     val trafficSide: String
         get() = this.car?.side!!.replaceFirstChar(Char::uppercase)
 }

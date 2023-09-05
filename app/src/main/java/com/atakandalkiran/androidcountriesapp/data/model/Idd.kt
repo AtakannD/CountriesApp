@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Idd(
     @ColumnInfo("country_phone_domains") val root: String?,
-    @ColumnInfo("country_internet_domains") val suffixes: List<String?>
+    @ColumnInfo("country_internet_domains") val suffixes: List<String?>?
 ) : Parcelable

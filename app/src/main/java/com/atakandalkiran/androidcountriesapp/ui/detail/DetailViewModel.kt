@@ -44,17 +44,21 @@ class DetailViewModel @Inject constructor() : ViewModel() {
         resultList.add(DetailItemModel(id = index++, item = continent.toString()))
 
         resultList.add(DetailHeaderModel(id = index++, title = "Region: "))
-        resultList.add(DetailItemModel(id = index++, item = countryInfos.region.toString()))
+        resultList.add(DetailItemModel(id = index++, item = countryInfos.countryRegion))
 
         resultList.add(DetailHeaderModel(id = index++, title = "Subregion: "))
-        resultList.add(DetailItemModel(id = index++, item = countryInfos.subregion.toString()))
+        resultList.add(DetailItemModel(id = index++, item = countryInfos.countrySubregion))
 
         resultList.add(DetailHeaderModel(id = index++, title = "Borders: "))
-        countryInfos.borders?.forEachIndexed { index, it ->
-            border.append(it)
-            if (index != countryInfos.borders.lastIndex) {
-                border.append(", ")
+        if (countryInfos.borders != null) {
+            countryInfos.borders.forEachIndexed { index, it ->
+                border.append(it)
+                if (index != countryInfos.borders.lastIndex) {
+                    border.append(", ")
+                }
             }
+        } else {
+            border.append("There is no borders to another country.")
         }
         resultList.add(DetailItemModel(id = index++, item = border.toString()))
 
@@ -62,11 +66,15 @@ class DetailViewModel @Inject constructor() : ViewModel() {
         resultList.add(DetailItemModel(id = index++, item = countryInfos.isLandlocked))
 
         resultList.add(DetailHeaderModel(id = index++, title = "Capital: "))
-        countryInfos.capital?.forEachIndexed { index, it ->
-            capital.append(it)
-            if (index != countryInfos.capital.lastIndex) {
-                continent.append(", ")
+        if (countryInfos.capital != null) {
+            countryInfos.capital.forEachIndexed { index, it ->
+                capital.append(it)
+                if (index != countryInfos.capital.lastIndex) {
+                    capital.append(", ")
+                }
             }
+        } else {
+            capital.append("There is no capital city.")
         }
         resultList.add(DetailItemModel(id = index++, item = capital.toString()))
 
@@ -74,7 +82,7 @@ class DetailViewModel @Inject constructor() : ViewModel() {
         resultList.add(
             DetailItemModel(
                 id = index++,
-                item = countryInfos.demonyms?.eng?.f.toString()
+                item = countryInfos.countryDemonyms
             )
         )
 
@@ -103,7 +111,7 @@ class DetailViewModel @Inject constructor() : ViewModel() {
         resultList.add(DetailItemModel(id = index++, item = countryInfos.trafficSide))
 
         resultList.add(DetailHeaderModel(id = index++, title = "Calling Code: "))
-        resultList.add(DetailItemModel(id = index++, item = countryInfos.idd?.root.toString()))
+        resultList.add(DetailItemModel(id = index++, item = countryInfos.telefonDomain))
 
         resultList.add(DetailHeaderModel(id = index++, title = "ISO 3166 code: "))
         resultList.add(DetailItemModel(id = index++, item = countryInfos.cca2.toString()))
