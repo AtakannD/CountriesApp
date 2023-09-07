@@ -38,20 +38,20 @@ data class CountryInfos(
     val countryArea: String
         get() {
             return if (this.area < 0) {
-                "There is no information about area."
+                NO_AREA_MSG
             } else {
                 this.area.toString()
             }
         }
     val countryDemonyms: String
-        get() = this.demonyms?.eng?.f ?: "There is no demonym word to describe."
+        get() = this.demonyms?.eng?.f ?: NO_DEMONYMS_MSG
     val countryPopulation: String
         get() = this.population.toString()
 
     val countryRegion: String
-        get() = this.region ?: "There is no region."
+        get() = this.region ?: NO_REGION_MSG
     val countrySubregion: String
-        get() = this.subregion ?: "There is no subregion."
+        get() = this.subregion ?: NO_SUBREGION_MSG
     val isIndependent: String
         get() = this.independent.toString().replaceFirstChar(Char::uppercase)
     val isLandlocked: String
@@ -59,8 +59,18 @@ data class CountryInfos(
     val isUnMember: String
         get() = this.unMember.toString().replaceFirstChar(Char::uppercase)
     val telefonDomain: String
-        get() = this.idd?.root ?: "There is no calling code."
+        get() = this.idd?.root ?: NO_IDD_MSG
 
     val trafficSide: String
         get() = this.car?.side!!.replaceFirstChar(Char::uppercase)
+
+    companion object NullValueMessages {
+        const val NO_AREA_MSG = "There is no information about area."
+        const val NO_DEMONYMS_MSG = "There is no demonym word to describe."
+        const val NO_REGION_MSG = "There is no region."
+        const val NO_SUBREGION_MSG = "There is no subregion."
+        const val NO_IDD_MSG = "There is no calling code."
+        const val NO_BORDER_COUNTRY_MSG = "There is no borders to another country."
+        const val NO_CAPITAL_CITY_MSG = "There is no capital city."
+    }
 }
