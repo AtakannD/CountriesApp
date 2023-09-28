@@ -1,15 +1,13 @@
 package com.atakandalkiran.androidcountriesapp.ui.search
 
-import androidx.lifecycle.ViewModel
 import com.atakandalkiran.androidcountriesapp.data.model.CountryInfos
 import com.atakandalkiran.androidcountriesapp.data.model.SearchHistoryModel
-import com.atakandalkiran.androidcountriesapp.data.repository.CountriesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.atakandalkiran.androidcountriesapp.data.Result
-import com.atakandalkiran.androidcountriesapp.data.api.CountriesService
+import com.atakandalkiran.androidcountriesapp.data.base.BaseViewModel
 import com.atakandalkiran.androidcountriesapp.data.usecases.SearchUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -18,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchUseCase: SearchUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -54,7 +52,7 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun fetchData() {
-        viewModelScope.launch {
+        serviceFetchingJob = viewModelScope.launch {
             searchProgressDisplay(true)
             searchUseCase.searchCountries(lastSearchedCountry).collectLatest { result ->
                 when (result) {

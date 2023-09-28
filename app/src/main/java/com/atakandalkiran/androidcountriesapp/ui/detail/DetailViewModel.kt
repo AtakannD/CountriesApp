@@ -2,8 +2,8 @@
 
 package com.atakandalkiran.androidcountriesapp.ui.detail
 
-import androidx.lifecycle.ViewModel
 import androidx.room.util.newStringBuilder
+import com.atakandalkiran.androidcountriesapp.data.base.BaseViewModel
 import com.atakandalkiran.androidcountriesapp.data.model.*
 import com.atakandalkiran.androidcountriesapp.data.model.CountryInfos.NullValueMessages.NO_BORDER_COUNTRY_MSG
 import com.atakandalkiran.androidcountriesapp.data.model.CountryInfos.NullValueMessages.NO_CAPITAL_CITY_MSG
@@ -29,7 +29,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor() : ViewModel() {
+class DetailViewModel @Inject constructor() : BaseViewModel() {
 
     private val _selectedCountry = MutableStateFlow<CountryInfos?>(null)
     val selectedCountry = _selectedCountry.asStateFlow()

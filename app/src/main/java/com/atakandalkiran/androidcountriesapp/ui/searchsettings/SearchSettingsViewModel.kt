@@ -1,8 +1,6 @@
 package com.atakandalkiran.androidcountriesapp.ui.searchsettings
 
-import androidx.lifecycle.ViewModel
-import com.atakandalkiran.androidcountriesapp.data.api.CountriesService
-import com.atakandalkiran.androidcountriesapp.data.repository.CountriesRepository
+import com.atakandalkiran.androidcountriesapp.data.base.BaseViewModel
 import com.atakandalkiran.androidcountriesapp.data.usecases.SearchSettingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchSettingsViewModel @Inject constructor(
     private val searchSettingsUseCase: SearchSettingsUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)

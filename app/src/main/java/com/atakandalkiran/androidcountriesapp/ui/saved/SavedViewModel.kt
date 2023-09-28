@@ -1,6 +1,6 @@
 package com.atakandalkiran.androidcountriesapp.ui.saved
 
-import androidx.lifecycle.ViewModel
+import com.atakandalkiran.androidcountriesapp.data.base.BaseViewModel
 import com.atakandalkiran.androidcountriesapp.data.model.CountryInfos
 import com.atakandalkiran.androidcountriesapp.data.usecases.SavedUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SavedViewModel @Inject constructor(
     private val savedUseCase: SavedUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -29,7 +29,7 @@ class SavedViewModel @Inject constructor(
     }
 
     private fun getSavedCountriesData() {
-        viewModelScope.launch {
+        serviceFetchingJob = viewModelScope.launch {
             savedUseCase.getLocalCountryInformations().collectLatest { result ->
                         saveCountries(result)
                 }

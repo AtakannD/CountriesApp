@@ -1,13 +1,12 @@
 package com.atakandalkiran.androidcountriesapp.ui.home
 
-import androidx.lifecycle.*
 import com.atakandalkiran.androidcountriesapp.data.model.CountryInfos
-import com.atakandalkiran.androidcountriesapp.data.repository.CountriesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.atakandalkiran.androidcountriesapp.data.Result
+import com.atakandalkiran.androidcountriesapp.data.base.BaseViewModel
 import com.atakandalkiran.androidcountriesapp.data.usecases.HomeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -16,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val homeUseCase: HomeUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private var viewModelJob = Job()
 
@@ -103,7 +102,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getCountriesProperties() {
-        viewModelScope.launch {
+        serviceFetchingJob = viewModelScope.launch {
             loadingBarDisplay(true)
             homeUseCase.getCountryProperties().collectLatest { result ->
                 when (result) {
