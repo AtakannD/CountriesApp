@@ -1,7 +1,6 @@
 package com.atakandalkiran.androidcountriesapp.data.local
 
 import androidx.room.*
-import com.atakandalkiran.androidcountriesapp.data.Result
 import com.atakandalkiran.androidcountriesapp.data.model.CountryInfos
 import com.atakandalkiran.androidcountriesapp.data.model.SearchHistoryModel
 import kotlinx.coroutines.flow.Flow
@@ -9,10 +8,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CountriesDao {
 
-    @Query("select exists(select * from country_storage_table where country_common_names LIKE '%' || :searchedKeyword || '%')")
+    @Query("SELECT EXISTS(SELECT * FROM country_storage_table WHERE country_common_names LIKE '%' || :searchedKeyword || '%')")
     suspend fun isSearchCountryExist(searchedKeyword: String): Boolean
 
-    @Query("select * from country_storage_table")
+    @Query("SELECT * FROM country_storage_table")
     fun getLocalCountryInformation(): Flow<List<CountryInfos>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -24,16 +23,16 @@ interface CountriesDao {
     @Delete
     suspend fun deleteSavedCountry(countryInfos: CountryInfos)
 
-    @Query("delete from country_storage_table")
+    @Query("DELETE FROM country_storage_table")
     suspend fun deleteAll()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(historyModel: SearchHistoryModel)
 
-    @Query("select * from search_history_storage order by id desc")
+    @Query("SELECT * FROM search_history_storage ORDER BY id DESC")
     fun getSearchHistoryCountries(): Flow<List<SearchHistoryModel>>
 
-    @Query("delete from search_history_storage")
+    @Query("DELETE FROM search_history_storage")
     suspend fun clearSearchHistory()
 
     @Delete
